@@ -1,0 +1,16 @@
+<!-- blog/templates/blog/index.html -->
+{% extends "base.html" %}
+
+{% block page_title %}
+    <h2>What's New?</h2>
+{% endblock page_title %}
+
+{% block page_content %}
+    {% block posts %}
+        {% for post in posts %}
+            <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
+            <small>by {{ post.author }} on {{ post.created_on.date }}</small>
+            <p>{{ post.body | slice:":255" }}...</p>
+        {% endfor %}
+    {% endblock posts %}
+{% endblock page_content %}
